@@ -35,7 +35,12 @@ function PinInput({ label, value, onChange, placeholder, focused, onFocus, onBlu
   )
 }
 
-export default function ForgotPinPage() {
+
+import { Suspense } from "react"
+
+function ForgotPinContent() {
+  // ... ALL your existing code goes here (keep everything same)
+  
   const router = useRouter()
   const searchParams = useSearchParams()
   const step = searchParams.get("step") || "phone"
@@ -184,3 +189,16 @@ export default function ForgotPinPage() {
     </div>
   )
 }
+
+export default function ForgotPinPage() {
+  return (
+    <Suspense fallback={<div style={{minHeight:"100vh",background:"linear-gradient(160deg,#bfdbfe 0%,#dbeafe 40%,#e0f2fe 100%)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <div style={{width:"32px",height:"32px",border:"3px solid #bfdbfe",borderTop:"3px solid #2563eb",borderRadius:"50%",animation:"spin 0.8s linear infinite"}} />
+    </div>}>
+      <ForgotPinContent />
+    </Suspense>
+  )
+}
+
+// export default function ForgotPinPage() {
+// }
