@@ -1,0 +1,46 @@
+[
+  {
+    "id": "u1",
+    "name": "Rahim Uddin",
+    "fatherName": "Karim Uddin",
+    "motherName": "Fatema Begum",
+    "phone": "01711000001",
+    "pin": "123456",
+    "school": "Dhaka Government High School",
+    "address": "Mirpur, Dhaka",
+    "role": "student",
+    "isOnboarded": false,
+    "profile": null,
+    "quizHistory": [],
+    "createdAt": "2024-01-01"
+  },
+  {
+    "id": "u2",
+    "name": "Nusrat Jahan",
+    "fatherName": "Jamal Hossain",
+    "motherName": "Roksana Begum",
+    "phone": "01711000002",
+    "pin": "123456",
+    "school": "Viqarunnisa Noon School",
+    "address": "Baily Road, Dhaka",
+    "role": "student",
+    "isOnboarded": true,
+    "profile": {
+      "educationType": "General Education",
+      "medium": "Bangla Medium",
+      "level": "Secondary Level",
+      "class": "Class 10",
+      "group": "Science"
+    },
+    "quizHistory": [],
+    "createdAt": "2024-01-02"
+  },
+  {
+    "id": "admin1",
+    "name": "Admin User",
+    "phone": "01900000000",
+    "pin": "admin123",
+    "role": "admin",
+    "createdAt": "2024-01-01"
+  }
+]
