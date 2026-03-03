@@ -1,0 +1,93 @@
+{
+  "bangla": [
+    { "id": "bangla-c1", "title": "গদ্য - বাংলা সাহিত্যের ইতিহাস", "chapterNo": 1, "description": "বাংলা সাহিত্যের উৎপত্তি ও বিকাশ সম্পর্কে বিস্তারিত আলোচনা।", "pages": 24 },
+    { "id": "bangla-c2", "title": "পদ্য - কবিতার ছন্দ ও অলঙ্কার", "chapterNo": 2, "description": "বাংলা কবিতার ছন্দ, অলঙ্কার ও রস বিচার।", "pages": 18 },
+    { "id": "bangla-c3", "title": "ব্যাকরণ - সন্ধি ও সমাস", "chapterNo": 3, "description": "বাংলা ব্যাকরণের সন্ধি ও সমাসের নিয়ম ও উদাহরণ।", "pages": 20 },
+    { "id": "bangla-c4", "title": "রচনা ও প্রবন্ধ লেখা", "chapterNo": 4, "description": "সৃজনশীল রচনা ও প্রবন্ধ লেখার কৌশল।", "pages": 16 },
+    { "id": "bangla-c5", "title": "পত্র ও দরখাস্ত লেখা", "chapterNo": 5, "description": "আনুষ্ঠানিক ও অনানুষ্ঠানিক পত্র লেখার নিয়মকানুন।", "pages": 14 }
+  ],
+  "english": [
+    { "id": "english-c1", "title": "Reading Comprehension", "chapterNo": 1, "description": "Techniques for understanding and analyzing English passages.", "pages": 20 },
+    { "id": "english-c2", "title": "Grammar - Tense & Voice", "chapterNo": 2, "description": "Complete guide to English tenses and voice transformation.", "pages": 22 },
+    { "id": "english-c3", "title": "Writing Skills - Paragraph", "chapterNo": 3, "description": "How to write effective paragraphs and compositions.", "pages": 18 },
+    { "id": "english-c4", "title": "Vocabulary Building", "chapterNo": 4, "description": "Essential vocabulary, synonyms, antonyms and usage.", "pages": 16 },
+    { "id": "english-c5", "title": "Letter & Email Writing", "chapterNo": 5, "description": "Formal and informal letter writing techniques.", "pages": 14 }
+  ],
+  "math": [
+    { "id": "math-c1", "title": "বাস্তব সংখ্যা", "chapterNo": 1, "description": "বাস্তব সংখ্যার ধারণা, গুণধর্ম ও প্রয়োগ।", "pages": 26 },
+    { "id": "math-c2", "title": "বীজগাণিতিক রাশি", "chapterNo": 2, "description": "বীজগণিতের মূল ধারণা, সরলীকরণ ও উৎপাদক।", "pages": 28 },
+    { "id": "math-c3", "title": "জ্যামিতি - ত্রিভুজ", "chapterNo": 3, "description": "ত্রিভুজের ধর্ম, সর্বসমতা ও ক্ষেত্রফল।", "pages": 24 },
+    { "id": "math-c4", "title": "পরিমিতি", "chapterNo": 4, "description": "বিভিন্ন জ্যামিতিক আকৃতির ক্ষেত্রফল ও আয়তন।", "pages": 22 },
+    { "id": "math-c5", "title": "পরিসংখ্যান", "chapterNo": 5, "description": "তথ্য সংগ্রহ, উপস্থাপন ও বিশ্লেষণ।", "pages": 20 }
+  ],
+  "physics": [
+    { "id": "physics-c1", "title": "ভৌত রাশি ও পরিমাপ", "chapterNo": 1, "description": "পদার্থবিজ্ঞানের মূল রাশি, একক ও পরিমাপ পদ্ধতি।", "pages": 22 },
+    { "id": "physics-c2", "title": "গতি", "chapterNo": 2, "description": "সরলরেখায় গতি, বেগ, ত্বরণ ও নিউটনের সূত্র।", "pages": 28 },
+    { "id": "physics-c3", "title": "বল ও চাপ", "chapterNo": 3, "description": "বল, চাপ, মাধ্যাকর্ষণ ও প্লবতার ধারণা।", "pages": 24 },
+    { "id": "physics-c4", "title": "কাজ, ক্ষমতা ও শক্তি", "chapterNo": 4, "description": "কাজ, ক্ষমতা, শক্তির রূপান্তর ও সংরক্ষণ।", "pages": 26 },
+    { "id": "physics-c5", "title": "আলো", "chapterNo": 5, "description": "আলোর প্রতিফলন, প্রতিসরণ ও লেন্সের ব্যবহার।", "pages": 24 }
+  ],
+  "chemistry": [
+    { "id": "chemistry-c1", "title": "পদার্থের গঠন", "chapterNo": 1, "description": "পরমাণু, অণু, আয়ন ও পদার্থের গঠন।", "pages": 24 },
+    { "id": "chemistry-c2", "title": "পর্যায় সারণি", "chapterNo": 2, "description": "পর্যায় সারণির গঠন, মৌলের শ্রেণিবিন্যাস ও ধর্ম।", "pages": 22 },
+    { "id": "chemistry-c3", "title": "রাসায়নিক বন্ধন", "chapterNo": 3, "description": "আয়নিক, সমযোজী ও ধাতব বন্ধনের ধারণা।", "pages": 20 },
+    { "id": "chemistry-c4", "title": "অ্যাসিড, ক্ষার ও লবণ", "chapterNo": 4, "description": "অ্যাসিড-ক্ষারের ধর্ম, pH এবং প্রশমন বিক্রিয়া।", "pages": 26 },
+    { "id": "chemistry-c5", "title": "জৈব রসায়ন", "chapterNo": 5, "description": "জৈব যৌগের শ্রেণিবিন্যাস ও মূল বিক্রিয়া।", "pages": 24 }
+  ],
+  "biology": [
+    { "id": "biology-c1", "title": "জীবকোষ ও টিস্যু", "chapterNo": 1, "description": "কোষের গঠন, প্রকারভেদ ও টিস্যুর কার্যাবলি।", "pages": 26 },
+    { "id": "biology-c2", "title": "জীবের শ্রেণিবিন্যাস", "chapterNo": 2, "description": "উদ্ভিদ ও প্রাণী জগতের শ্রেণিবিন্যাস।", "pages": 24 },
+    { "id": "biology-c3", "title": "সালোকসংশ্লেষণ", "chapterNo": 3, "description": "সবুজ উদ্ভিদে খাদ্য তৈরির প্রক্রিয়া ও গুরুত্ব।", "pages": 22 },
+    { "id": "biology-c4", "title": "মানব পরিপাকতন্ত্র", "chapterNo": 4, "description": "খাদ্য পরিপাক, শোষণ ও পুষ্টির প্রক্রিয়া।", "pages": 24 },
+    { "id": "biology-c5", "title": "জেনেটিক্স ও বংশগতি", "chapterNo": 5, "description": "DNA, জিন ও বংশগতির মূলনীতি।", "pages": 22 }
+  ],
+  "ict": [
+    { "id": "ict-c1", "title": "তথ্য ও যোগাযোগ প্রযুক্তি পরিচিতি", "chapterNo": 1, "description": "ICT এর ধারণা, ইতিহাস ও দৈনন্দিন জীবনে প্রয়োগ।", "pages": 20 },
+    { "id": "ict-c2", "title": "কম্পিউটার হার্ডওয়্যার", "chapterNo": 2, "description": "কম্পিউটারের বিভিন্ন হার্ডওয়্যার উপাদান ও কার্যপ্রণালি।", "pages": 22 },
+    { "id": "ict-c3", "title": "ইন্টারনেট ও নেটওয়ার্ক", "chapterNo": 3, "description": "ইন্টারনেট, নেটওয়ার্ক ও নিরাপদ ব্যবহার।", "pages": 18 },
+    { "id": "ict-c4", "title": "প্রোগ্রামিং পরিচিতি", "chapterNo": 4, "description": "প্রোগ্রামিং এর মূল ধারণা ও সহজ অ্যালগরিদম।", "pages": 24 },
+    { "id": "ict-c5", "title": "ডেটাবেজ ব্যবস্থাপনা", "chapterNo": 5, "description": "ডেটাবেজের ধারণা, SQL এবং তথ্য ব্যবস্থাপনা।", "pages": 20 }
+  ],
+  "higher_math": [
+    { "id": "hmath-c1", "title": "ম্যাট্রিক্স ও নির্ণায়ক", "chapterNo": 1, "description": "ম্যাট্রিক্সের ধারণা, যোগ, গুণ ও নির্ণায়ক।", "pages": 28 },
+    { "id": "hmath-c2", "title": "ভেক্টর", "chapterNo": 2, "description": "ভেক্টরের ধারণা, যোগ-বিয়োগ ও স্কেলার গুণফল।", "pages": 26 },
+    { "id": "hmath-c3", "title": "ত্রিকোণমিতি", "chapterNo": 3, "description": "ত্রিকোণমিতিক অনুপাত ও সমীকরণ সমাধান।", "pages": 30 },
+    { "id": "hmath-c4", "title": "ক্যালকুলাস - অন্তরীকরণ", "chapterNo": 4, "description": "ফাংশনের সীমা, অন্তরক ও ব্যবহার।", "pages": 32 },
+    { "id": "hmath-c5", "title": "ক্যালকুলাস - যোগজীকরণ", "chapterNo": 5, "description": "নির্দিষ্ট ও অনির্দিষ্ট যোগজ এবং ক্ষেত্রফল।", "pages": 30 }
+  ],
+  "gen_science": [
+    { "id": "gscience-c1", "title": "বস্তু ও শক্তি", "chapterNo": 1, "description": "বস্তুর অবস্থা, শক্তির রূপ ও রূপান্তর।", "pages": 20 },
+    { "id": "gscience-c2", "title": "জীবন ও পরিবেশ", "chapterNo": 2, "description": "জীবের বৈশিষ্ট্য, পরিবেশ ও খাদ্যশৃঙ্খল।", "pages": 22 },
+    { "id": "gscience-c3", "title": "স্বাস্থ্য ও পুষ্টি", "chapterNo": 3, "description": "সুস্বাস্থ্যের জন্য পুষ্টি ও স্বাস্থ্যবিধি।", "pages": 18 },
+    { "id": "gscience-c4", "title": "তড়িৎ ও চুম্বক", "chapterNo": 4, "description": "বিদ্যুৎ, চুম্বক ও তাদের ব্যবহারিক প্রয়োগ।", "pages": 20 },
+    { "id": "gscience-c5", "title": "মহাকাশ ও পৃথিবী", "chapterNo": 5, "description": "সৌরজগৎ, পৃথিবীর গঠন ও মহাকাশ বিজ্ঞান।", "pages": 18 }
+  ],
+  "finance": [
+    { "id": "finance-c1", "title": "অর্থায়নের মূল ধারণা", "chapterNo": 1, "description": "ব্যবসায় অর্থায়নের উৎস, ধরন ও গুরুত্ব।", "pages": 22 },
+    { "id": "finance-c2", "title": "ব্যাংকিং সেবা", "chapterNo": 2, "description": "বাণিজ্যিক ব্যাংকের কার্যাবলি ও সেবাসমূহ।", "pages": 24 },
+    { "id": "finance-c3", "title": "বিমা ও ঝুঁকি ব্যবস্থাপনা", "chapterNo": 3, "description": "বিমার ধারণা, প্রকারভেদ ও ঝুঁকি নিরসন।", "pages": 20 },
+    { "id": "finance-c4", "title": "পুঁজিবাজার", "chapterNo": 4, "description": "শেয়ারবাজার, বিনিয়োগ ও পুঁজিবাজার ব্যবস্থাপনা।", "pages": 22 },
+    { "id": "finance-c5", "title": "আন্তর্জাতিক বাণিজ্য অর্থায়ন", "chapterNo": 5, "description": "বৈদেশিক বাণিজ্য ও আন্তর্জাতিক অর্থায়ন।", "pages": 20 }
+  ],
+  "accounting": [
+    { "id": "acc-c1", "title": "হিসাববিজ্ঞান পরিচিতি", "chapterNo": 1, "description": "হিসাববিজ্ঞানের ধারণা, নীতি ও গুরুত্ব।", "pages": 20 },
+    { "id": "acc-c2", "title": "জাবেদা ও খতিয়ান", "chapterNo": 2, "description": "লেনদেন লিপিবদ্ধকরণ, জাবেদা ও খতিয়ান তৈরি।", "pages": 26 },
+    { "id": "acc-c3", "title": "রেওয়ামিল", "chapterNo": 3, "description": "রেওয়ামিল তৈরি ও ভুল সংশোধন।", "pages": 22 },
+    { "id": "acc-c4", "title": "আর্থিক বিবরণী", "chapterNo": 4, "description": "আয়-ব্যয় হিসাব ও উদ্বৃত্তপত্র প্রস্তুতকরণ।", "pages": 28 },
+    { "id": "acc-c5", "title": "অংশীদারি হিসাব", "chapterNo": 5, "description": "অংশীদারি ব্যবসার হিসাবরক্ষণ পদ্ধতি।", "pages": 24 }
+  ],
+  "arabic": [
+    { "id": "arabic-c1", "title": "আরবি বর্ণমালা ও উচ্চারণ", "chapterNo": 1, "description": "আরবি হরফ, হরকত ও সঠিক উচ্চারণ পদ্ধতি।", "pages": 20 },
+    { "id": "arabic-c2", "title": "আরবি ব্যাকরণ - নাহু", "chapterNo": 2, "description": "আরবি বাক্যের গঠন, ইসম, ফেল ও হরফ।", "pages": 24 },
+    { "id": "arabic-c3", "title": "কুরআনের আয়াত অনুবাদ", "chapterNo": 3, "description": "নির্বাচিত কুরআনের আয়াত ও বাংলা অনুবাদ।", "pages": 22 },
+    { "id": "arabic-c4", "title": "আরবি গদ্য ও পদ্য", "chapterNo": 4, "description": "সহজ আরবি গল্প, কবিতা ও রচনা।", "pages": 18 },
+    { "id": "arabic-c5", "title": "আরবি কথোপকথন", "chapterNo": 5, "description": "দৈনন্দিন আরবি কথোপকথন ও বাক্য গঠন।", "pages": 16 }
+  ],
+  "trade_theory": [
+    { "id": "trade-c1", "title": "ট্রেড পরিচিতি", "chapterNo": 1, "description": "কারিগরি শিক্ষার ধারণা ও ট্রেডের পরিচিতি।", "pages": 18 },
+    { "id": "trade-c2", "title": "নিরাপত্তা বিধি", "chapterNo": 2, "description": "কর্মক্ষেত্রে নিরাপত্তার নিয়মকানুন ও সতর্কতা।", "pages": 16 },
+    { "id": "trade-c3", "title": "যন্ত্রপাতি পরিচালনা", "chapterNo": 3, "description": "বিভিন্ন যন্ত্রপাতির সঠিক ব্যবহার ও রক্ষণাবেক্ষণ।", "pages": 22 },
+    { "id": "trade-c4", "title": "মান নিয়ন্ত্রণ", "chapterNo": 4, "description": "উৎপাদনে মানের ধারণা ও গুণগত মান নিশ্চিতকরণ।", "pages": 20 },
+    { "id": "trade-c5", "title": "উদ্যোক্তা উন্নয়ন", "chapterNo": 5, "description": "স্বকর্মসংস্থান ও উদ্যোক্তা হওয়ার দক্ষতা।", "pages": 18 }
+  ]
+}

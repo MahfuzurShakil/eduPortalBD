@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
+import { persistUserProfile } from "@/lib/mock/auth"
 
 const useAuthStore = create(
   persist(
@@ -16,10 +17,16 @@ const useAuthStore = create(
 
       clearPendingRegistration: () => set({ pendingRegistration: null }),
 
-      updateProfile: (profile) =>
+      updateProfile: (profile) => {
+        const { user } = get()
+        // Persist to localStorage so login reload restores it
+        if (user?.phone) {
+          persistUserProfile(user.phone, profile)
+        }
         set((state) => ({
           user: { ...state.user, profile, isOnboarded: true },
-        })),
+        }))
+      },
 
       updateQuizHistory: (entry) =>
         set((state) => ({

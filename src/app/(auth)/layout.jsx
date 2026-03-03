@@ -63,7 +63,7 @@ export default function AuthLayout({ children }) {
       </div>
 
       <p style={{ marginTop: "20px", color: "rgba(30,58,138,0.45)", fontSize: "13px", zIndex: 1 }}>
-        © ২০২৪ EduPortal BD
+        © 2026 EduPortal BD
       </p>
     </div>
   )
