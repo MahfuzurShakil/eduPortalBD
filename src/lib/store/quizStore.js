@@ -1,18 +1,13 @@
 import { create } from "zustand"
 
 const useQuizStore = create((set, get) => ({
-  // Config set before quiz starts
-  config: null,        // { subjectId, subjectName, chapters, questionCount, timePerQuestion }
-  questions: [],       // shuffled question list for current quiz
-  
-  // Active quiz state
+  config: null,
+  questions: [],
   currentIndex: 0,
-  answers: {},         // { questionId: selectedOptionIndex }
+  answers: {},
   timeLeft: 0,
   isFinished: false,
   startedAt: null,
-
-  // Result stored after submission
   result: null,
 
   setConfig: (config) => set({ config }),
@@ -21,6 +16,7 @@ const useQuizStore = create((set, get) => ({
     set((state) => ({ answers: { ...state.answers, [questionId]: optionIndex } })),
   setCurrentIndex: (index) => set({ currentIndex: index }),
   setTimeLeft: (timeLeft) => set({ timeLeft }),
+  decrementTime: () => set((state) => ({ timeLeft: Math.max(0, state.timeLeft - 1) })),
   finishQuiz: () => set({ isFinished: true }),
   setResult: (result) => set({ result }),
   resetQuiz: () => set({

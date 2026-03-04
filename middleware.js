@@ -4,7 +4,8 @@ export function middleware(request) {
   const { pathname } = request.nextUrl
 
   // Public routes
-  const publicRoutes = ["/", "/login", "/register", "/verify-otp", "/forgot-pin"]
+  const publicRoutes = ["/", "/login", "/register", "/verify-otp", "/forgot-pin","/admin/login"]
+  
   if (publicRoutes.some(r => pathname.startsWith(r))) {
     return NextResponse.next()
   }
