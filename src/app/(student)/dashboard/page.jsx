@@ -1,208 +1,415 @@
-// app/(student)/dashboard/page.jsx
 "use client"
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import {
-  BookOpen, Trophy, TrendingUp, Clock, ChevronRight,
-  Star, Zap, Target, PlayCircle, Award
+  BookOpen, ChevronRight, PlayCircle, FileText,
+  Trophy, Target, Clock, TrendingUp, Zap, ArrowRight, Star
 } from "lucide-react"
 import useAuthStore from "@/lib/store/authStore"
 
-export default function DashboardPage() {
-  const { user, isAuthenticated } = useAuthStore()
-  const router = useRouter()
+// ─── Subject Card — clean, uniform, Coursera-style ───────────────────────────
+function SubjectCard({ subject, chapterCount }) {
+  const [hovered, setHovered] = useState(false)
 
-  useEffect(() => {
-    if (!isAuthenticated) router.replace("/login")
-  }, [isAuthenticated])
-
-  if (!user) return null
-
-  const subjects = user?.profile?.subjects || []
-  const profile = user?.profile || {}
-  const hour = new Date().getHours()
-  const greeting = hour < 12 ? "শুভ সকাল" : hour < 17 ? "শুভ বিকেল" : "শুভ সন্ধ্যা"
-
-  const stats = [
-    { icon: BookOpen, label: "মোট বিষয়", value: subjects.length, color: "#2563eb", bg: "#eff6ff", border: "#bfdbfe" },
-    { icon: Trophy, label: "কুইজ দেওয়া হয়েছে", value: "০", color: "#d97706", bg: "#fffbeb", border: "#fde68a" },
-    { icon: TrendingUp, label: "গড় স্কোর", value: "—", color: "#16a34a", bg: "#f0fdf4", border: "#bbf7d0" },
-    { icon: Award, label: "র‌্যাংক", value: "—", color: "#9333ea", bg: "#faf5ff", border: "#e9d5ff" },
-  ]
-
-  return (
-    <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
-
-      {/* Hero greeting banner */}
-      <div style={{
-        background: "linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%)",
-        borderRadius: "24px",
-        padding: "32px 36px",
-        marginBottom: "28px",
-        position: "relative",
-        overflow: "hidden",
-      }}>
-        {/* Decorative circles */}
-        <div style={{ position: "absolute", top: "-40px", right: "-40px", width: "180px", height: "180px", borderRadius: "50%", background: "rgba(255,255,255,0.07)" }} />
-        <div style={{ position: "absolute", bottom: "-60px", right: "120px", width: "140px", height: "140px", borderRadius: "50%", background: "rgba(255,255,255,0.05)" }} />
-
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: "16px" }}>
-            <div>
-              <p style={{ color: "#93c5fd", fontSize: "14px", marginBottom: "6px", fontWeight: "500" }}>
-                {greeting}, 👋
-              </p>
-              <h1 style={{ color: "white", fontSize: "26px", fontWeight: "800", marginBottom: "10px", lineHeight: 1.2 }}>
-                {user.name}
-              </h1>
-              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                {profile.class && (
-                  <span style={{ background: "rgba(255,255,255,0.15)", color: "white", fontSize: "12px", padding: "4px 12px", borderRadius: "20px", fontWeight: "600" }}>
-                    📚 {profile.class}
-                  </span>
-                )}
-                {profile.group && (
-                  <span style={{ background: "rgba(255,255,255,0.15)", color: "white", fontSize: "12px", padding: "4px 12px", borderRadius: "20px", fontWeight: "600" }}>
-                    🎯 {profile.group}
-                  </span>
-                )}
-                {profile.medium && (
-                  <span style={{ background: "rgba(255,255,255,0.15)", color: "white", fontSize: "12px", padding: "4px 12px", borderRadius: "20px", fontWeight: "600" }}>
-                    🌐 {profile.medium}
-                  </span>
-                )}
-              </div>
-            </div>
-            <Link href="/quiz" style={{
-              display: "flex", alignItems: "center", gap: "8px",
-              background: "white", color: "#1e40af",
-              padding: "12px 20px", borderRadius: "14px",
-              textDecoration: "none", fontWeight: "700", fontSize: "14px",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.15)", flexShrink: 0,
-            }}>
-              <Zap size={16} color="#f59e0b" fill="#f59e0b" />
-              কুইজ দিন
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats row */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "14px", marginBottom: "32px" }}>
-        {stats.map((s, i) => (
-          <div key={i} style={{
-            background: "white", borderRadius: "16px",
-            padding: "18px 20px", border: `1px solid ${s.border}`,
-            boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
-          }}>
-            <div style={{
-              width: "40px", height: "40px", borderRadius: "11px",
-              background: s.bg, display: "flex", alignItems: "center",
-              justifyContent: "center", marginBottom: "12px",
-            }}>
-              <s.icon size={18} color={s.color} />
-            </div>
-            <div style={{ fontSize: "22px", fontWeight: "800", color: "#0f172a", marginBottom: "3px" }}>{s.value}</div>
-            <div style={{ fontSize: "12px", color: "#94a3b8", fontWeight: "500" }}>{s.label}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* My Subjects */}
-      <div style={{ marginBottom: "12px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <h2 style={{ fontSize: "18px", fontWeight: "800", color: "#0f172a" }}>আমার বিষয়সমূহ</h2>
-        <Link href="/subjects" style={{ color: "#2563eb", fontSize: "13px", fontWeight: "600", textDecoration: "none", display: "flex", alignItems: "center", gap: "4px" }}>
-          সব দেখুন <ChevronRight size={14} />
-        </Link>
-      </div>
-
-      {subjects.length === 0 ? (
-        <div style={{ background: "white", borderRadius: "20px", padding: "48px", textAlign: "center", border: "1px solid #f1f5f9" }}>
-          <div style={{ fontSize: "48px", marginBottom: "12px" }}>📚</div>
-          <p style={{ color: "#64748b", fontSize: "15px" }}>কোনো বিষয় পাওয়া যায়নি</p>
-        </div>
-      ) : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "16px" }}>
-          {subjects.map((subject, idx) => (
-            <SubjectCard key={subject.id} subject={subject} index={idx} />
-          ))}
-        </div>
-      )}
-
-      {/* Quick actions */}
-      <div style={{ marginTop: "32px" }}>
-        <h2 style={{ fontSize: "18px", fontWeight: "800", color: "#0f172a", marginBottom: "14px" }}>দ্রুত অ্যাক্সেস</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
-          {[
-            { href: "/quiz", icon: "🎯", label: "কুইজ দিন", desc: "MCQ প্র্যাকটিস করুন", color: "#fef3c7", border: "#fde68a", textColor: "#92400e" },
-            { href: "/leaderboard", icon: "🏆", label: "লিডারবোর্ড", desc: "র‌্যাংকিং দেখুন", color: "#faf5ff", border: "#e9d5ff", textColor: "#6b21a8" },
-            { href: "/subjects", icon: "📖", label: "পড়াশোনা", desc: "অধ্যায় পড়ুন", color: "#f0fdf4", border: "#bbf7d0", textColor: "#14532d" },
-          ].map((item, i) => (
-            <Link key={i} href={item.href} style={{ textDecoration: "none" }}>
-              <div style={{
-                background: item.color, border: `1px solid ${item.border}`,
-                borderRadius: "16px", padding: "20px",
-                transition: "transform 0.15s",
-                cursor: "pointer",
-              }}
-                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
-                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
-              >
-                <div style={{ fontSize: "28px", marginBottom: "10px" }}>{item.icon}</div>
-                <div style={{ fontSize: "14px", fontWeight: "700", color: item.textColor, marginBottom: "4px" }}>{item.label}</div>
-                <div style={{ fontSize: "12px", color: "#64748b" }}>{item.desc}</div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// Inline subject card for dashboard
-const subjectColors = [
-  { bg: "linear-gradient(135deg,#1e3a8a,#2563eb)", badge: "#93c5fd" },
-  { bg: "linear-gradient(135deg,#14532d,#16a34a)", badge: "#86efac" },
-  { bg: "linear-gradient(135deg,#7c2d12,#ea580c)", badge: "#fdba74" },
-  { bg: "linear-gradient(135deg,#4c1d95,#7c3aed)", badge: "#c4b5fd" },
-  { bg: "linear-gradient(135deg,#164e63,#0891b2)", badge: "#67e8f9" },
-  { bg: "linear-gradient(135deg,#831843,#db2777)", badge: "#f9a8d4" },
-]
-
-function SubjectCard({ subject, index }) {
-  const colors = subjectColors[index % subjectColors.length]
   return (
     <Link href={`/subjects/${subject.id}`} style={{ textDecoration: "none" }}>
-      <div style={{
-        borderRadius: "20px", overflow: "hidden",
-        boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-        transition: "transform 0.2s, box-shadow 0.2s",
-        cursor: "pointer", height: "100%",
-      }}
-        onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.15)" }}
-        onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.08)" }}
+      <div
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          background: "white", borderRadius: "14px",
+          border: `1px solid ${hovered ? "#bfdbfe" : "#e8f0fe"}`,
+          overflow: "hidden", cursor: "pointer",
+          transition: "all 0.2s ease",
+          boxShadow: hovered
+            ? "0 8px 24px rgba(37,99,235,0.12)"
+            : "0 1px 4px rgba(0,0,0,0.05)",
+          transform: hovered ? "translateY(-2px)" : "translateY(0)",
+        }}
       >
-        {/* Card top with gradient */}
-        <div style={{ background: colors.bg, padding: "24px 20px 20px" }}>
-          <div style={{ fontSize: "36px", marginBottom: "10px" }}>{subject.icon}</div>
-          <h3 style={{ color: "white", fontSize: "16px", fontWeight: "700", marginBottom: "6px", lineHeight: 1.3 }}>{subject.name}</h3>
-          <span style={{ background: "rgba(255,255,255,0.2)", color: "white", fontSize: "11px", padding: "3px 10px", borderRadius: "20px", fontWeight: "600" }}>
-            অধ্যায় শুরু করুন →
-          </span>
-        </div>
-        {/* Card bottom */}
-        <div style={{ background: "white", padding: "14px 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#64748b", fontSize: "12px" }}>
-            <BookOpen size={12} /> পড়া শুরু করুন
+        {/* Top accent bar — single consistent blue */}
+        <div style={{ height: "4px", background: "#2563eb", opacity: hovered ? 1 : 0.7, transition: "opacity 0.2s" }} />
+
+        <div style={{ padding: "16px 18px" }}>
+          {/* Icon + name row */}
+          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
+            <div style={{
+              width: "40px", height: "40px", borderRadius: "10px",
+              background: "#eff6ff", border: "1px solid #dbeafe",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "18px", flexShrink: 0,
+            }}>
+              {subject.icon}
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{
+                fontSize: "14px", fontWeight: "700", color: "#0f172a",
+                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                letterSpacing: "-0.2px",
+              }}>
+                {subject.name}
+              </div>
+              <div style={{ fontSize: "11.5px", color: "#94a3b8", marginTop: "2px" }}>
+                {chapterCount} টি অধ্যায়
+              </div>
+            </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-            <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#22c55e" }} />
-            <span style={{ fontSize: "11px", color: "#64748b" }}>সক্রিয়</span>
+
+          {/* Tags */}
+          {/* <div style={{ display: "flex", gap: "6px", marginBottom: "14px", flexWrap: "wrap" }}>
+            <span style={{
+              background: "#f0fdf4", color: "#16a34a", fontSize: "10.5px",
+              fontWeight: "600", padding: "3px 8px", borderRadius: "20px", display: "flex", alignItems: "center", gap: "4px",
+            }}>
+              <FileText size={9} /> PDF
+            </span>
+            <span style={{
+              background: "#fff7ed", color: "#ea580c", fontSize: "10.5px",
+              fontWeight: "600", padding: "3px 8px", borderRadius: "20px", display: "flex", alignItems: "center", gap: "4px",
+            }}>
+              <PlayCircle size={9} /> ভিডিও
+            </span>
+            <span style={{
+              background: "#f5f3ff", color: "#7c3aed", fontSize: "10.5px",
+              fontWeight: "600", padding: "3px 8px", borderRadius: "20px", display: "flex", alignItems: "center", gap: "4px",
+            }}>
+              <Target size={9} /> কুইজ
+            </span>
+          </div> */}
+
+          {/* CTA */}
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            paddingTop: "12px", borderTop: "1px solid #f1f5f9",
+          }}>
+            <span style={{ fontSize: "12.5px", fontWeight: "600", color: hovered ? "#1d4ed8" : "#2563eb", transition: "color 0.15s" }}>
+              পড়া শুরু করুন
+            </span>
+            <div style={{
+              width: "26px", height: "26px", borderRadius: "7px",
+              background: hovered ? "#2563eb" : "#eff6ff",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "all 0.2s",
+            }}>
+              <ArrowRight size={13} color={hovered ? "white" : "#2563eb"} />
+            </div>
           </div>
         </div>
       </div>
     </Link>
+  )
+}
+
+// ─── Stat Card ────────────────────────────────────────────────────────────────
+function StatCard({ icon: Icon, iconBg, iconColor, label, value, sub }) {
+  return (
+    <div style={{
+      background: "white", borderRadius: "14px", padding: "18px 20px",
+      border: "1px solid #e8f0fe",
+      boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+    }}>
+      <div style={{
+        width: "38px", height: "38px", borderRadius: "10px", background: iconBg,
+        display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "12px",
+      }}>
+        <Icon size={17} color={iconColor} />
+      </div>
+      <div style={{ fontSize: "22px", fontWeight: "800", color: "#0f172a", letterSpacing: "-0.5px", lineHeight: 1 }}>
+        {value}
+      </div>
+      <div style={{ fontSize: "12px", color: "#64748b", marginTop: "4px" }}>{label}</div>
+      {sub && <div style={{ fontSize: "11px", color: "#94a3b8", marginTop: "2px" }}>{sub}</div>}
+    </div>
+  )
+}
+
+// ─── Main Dashboard Page ──────────────────────────────────────────────────────
+export default function DashboardPage() {
+  const router = useRouter()
+  const { user, isAuthenticated } = useAuthStore()
+  const [chaptersData, setChaptersData] = useState({})
+  const [greeting, setGreeting] = useState("শুভেচ্ছা")
+
+  useEffect(() => {
+    if (!isAuthenticated || !user) { router.replace("/login"); return }
+    // Greeting based on time
+    const h = new Date().getHours()
+    if (h < 12) setGreeting("সুপ্রভাত")
+    else if (h < 17) setGreeting("শুভ দুপুর")
+    else setGreeting("শুভ সন্ধ্যা")
+    // Load chapters
+    import("@/data/chapters.json").then(m => setChaptersData(m.default || m))
+  }, [isAuthenticated, user])
+
+  if (!user) return null
+
+  const subjects = user?.profile?.subjects || []
+  const quizHistory = user?.quizHistory || []
+  const totalQuizzes = quizHistory.length
+  const avgScore = totalQuizzes > 0
+    ? Math.round(quizHistory.reduce((a, q) => a + q.score, 0) / totalQuizzes)
+    : 0
+  const firstName = user.name?.split(" ")[0] || "শিক্ষার্থী"
+  const profile = user.profile || {}
+
+  const profileSummary = [
+    profile.educationType === "general" ? "সাধারণ শিক্ষা" : profile.educationType === "madrasa" ? "মাদ্রাসা" : "কারিগরি",
+    profile.className,
+    profile.group === "science" ? "বিজ্ঞান" : profile.group === "commerce" ? "ব্যবসায়" : profile.group === "arts" ? "মানবিক" : null,
+  ].filter(Boolean).join(" · ")
+
+  const quickActions = [
+    { href: "/quiz", icon: "🎯", label: "কুইজ দিন", desc: "MCQ প্র্যাকটিস", color: "#eff6ff", border: "#dbeafe", text: "#1d4ed8" },
+    { href: "/leaderboard", icon: "🏆", label: "র‌্যাংকিং", desc: "লিডারবোর্ড দেখুন", color: "#fefce8", border: "#fde68a", text: "#92400e" },
+    { href: "/subjects", icon: "📖", label: "সব বিষয়", desc: "অধ্যায় তালিকা", color: "#f0fdf4", border: "#bbf7d0", text: "#14532d" },
+  ]
+
+  return (
+    <>
+      <style>{`
+        .dash-grid-stats {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 14px;
+        }
+        .dash-subjects-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 14px;
+        }
+        .dash-quick-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+        }
+        .dash-hero-text { font-size: 20px; }
+        .dash-hero-sub { font-size: 13px; }
+
+        @media (max-width: 1024px) {
+          .dash-grid-stats { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+          .dash-grid-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+          .dash-subjects-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+          .dash-quick-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+          .dash-hero-text { font-size: 17px !important; }
+        }
+        @media (max-width: 480px) {
+          .dash-grid-stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+          .dash-subjects-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+          .dash-quick-grid { grid-template-columns: 1fr; gap: 8px; }
+          .dash-hero-text { font-size: 16px !important; }
+          .dash-hero-sub { font-size: 12px !important; }
+        }
+      `}</style>
+
+      <div style={{
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        padding: "24px",
+        maxWidth: "1700px",
+      }}>
+
+        {/* ── Hero Banner ── */}
+        <div style={{
+          background: "linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #3b82f6 100%)",
+          borderRadius: "18px", padding: "28px 32px", marginBottom: "24px",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          gap: "20px", position: "relative", overflow: "hidden",
+        }}>
+          {/* Decorative circle */}
+          <div style={{
+            position: "absolute", right: "-40px", top: "-40px",
+            width: "200px", height: "200px", borderRadius: "50%",
+            background: "rgba(255,255,255,0.06)", pointerEvents: "none",
+          }} />
+          <div style={{
+            position: "absolute", right: "80px", bottom: "-60px",
+            width: "150px", height: "150px", borderRadius: "50%",
+            background: "rgba(255,255,255,0.04)", pointerEvents: "none",
+          }} />
+
+          <div style={{ flex: 1, minWidth: 0, position: "relative" }}>
+            <div style={{ fontSize: "12px", color: "#93c5fd", fontWeight: "600", marginBottom: "6px", letterSpacing: "0.05em" }}>
+              {greeting} 👋
+            </div>
+            <h2 className="dash-hero-text" style={{
+              color: "white", fontWeight: "800", marginBottom: "6px",
+              letterSpacing: "-0.4px", lineHeight: "1.25",
+            }}>
+              {firstName}, আজকে কী পড়বেন?
+            </h2>
+            <p className="dash-hero-sub" style={{ color: "#bfdbfe", lineHeight: "1.5", marginBottom: "16px" }}>
+              {profileSummary || "আপনার শিক্ষা যাত্রা শুরু করুন"}
+            </p>
+            <Link href="/subjects" style={{
+              display: "inline-flex", alignItems: "center", gap: "7px",
+              background: "white", color: "#1d4ed8",
+              padding: "9px 18px", borderRadius: "10px",
+              fontSize: "13px", fontWeight: "700", textDecoration: "none",
+              boxShadow: "0 2px 10px rgba(0,0,0,0.12)",
+              transition: "all 0.15s",
+            }}>
+              বিষয় দেখুন <ArrowRight size={14} />
+            </Link>
+          </div>
+
+          {/* Right badge */}
+          <div style={{
+            flexShrink: 0, background: "rgba(255,255,255,0.1)",
+            borderRadius: "16px", padding: "16px 20px", textAlign: "center",
+            backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.15)",
+          }}
+            className="dash-hero-badge"
+          >
+            <div style={{ fontSize: "28px", fontWeight: "800", color: "white", lineHeight: 1 }}>
+              {subjects.length}
+            </div>
+            <div style={{ fontSize: "11px", color: "#93c5fd", marginTop: "4px", fontWeight: "500" }}>টি বিষয়</div>
+          </div>
+
+          <style>{`
+            @media (max-width: 480px) { .dash-hero-badge { display: none; } }
+          `}</style>
+        </div>
+
+        {/* ── Stats Row ── */}
+        <div className="dash-grid-stats" style={{ marginBottom: "28px" }}>
+          <StatCard icon={BookOpen} iconBg="#eff6ff" iconColor="#2563eb"
+            label="মোট বিষয়" value={subjects.length} sub="সক্রিয় সিলেবাস" />
+          <StatCard icon={Trophy} iconBg="#fefce8" iconColor="#d97706"
+            label="কুইজ দেওয়া হয়েছে" value={totalQuizzes} sub="মোট অংশগ্রহণ" />
+          <StatCard icon={TrendingUp} iconBg="#f0fdf4" iconColor="#16a34a"
+            label="গড় স্কোর" value={avgScore > 0 ? `${avgScore}%` : "—"} sub="কুইজে পারফরমেন্স" />
+          <StatCard icon={Zap} iconBg="#f5f3ff" iconColor="#7c3aed"
+            label="স্ট্রিক" value="৫ দিন" sub="ধারাবাহিক পড়াশোনা" />
+        </div>
+
+        {/* ── Quick Actions ── */}
+        <div className="dash-quick-grid" style={{ marginBottom: "28px" }}>
+          {quickActions.map((a, i) => (
+            <Link key={i} href={a.href} style={{ textDecoration: "none" }}>
+              <div style={{
+                background: a.color, border: `1px solid ${a.border}`,
+                borderRadius: "14px", padding: "16px 18px",
+                display: "flex", alignItems: "center", gap: "12px",
+                cursor: "pointer", transition: "all 0.15s",
+              }}
+                onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
+                onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
+              >
+                <span style={{ fontSize: "22px", flexShrink: 0 }}>{a.icon}</span>
+                <div>
+                  <div style={{ fontSize: "13.5px", fontWeight: "700", color: a.text }}>{a.label}</div>
+                  <div style={{ fontSize: "11px", color: a.text, opacity: 0.7, marginTop: "1px" }}>{a.desc}</div>
+                </div>
+                <ChevronRight size={14} color={a.text} style={{ marginLeft: "auto", opacity: 0.5, flexShrink: 0 }} />
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* ── Subjects ── */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "14px", flexWrap: "wrap", gap: "8px" }}>
+          <div>
+            <h3 style={{ fontSize: "16px", fontWeight: "800", color: "#0f172a", letterSpacing: "-0.3px" }}>
+              আমার বিষয়সমূহ
+            </h3>
+            <p style={{ fontSize: "12px", color: "#94a3b8", marginTop: "2px" }}>
+              {subjects.length} টি বিষয় নির্বাচিত হয়েছে
+            </p>
+          </div>
+          <Link href="/subjects" style={{
+            display: "flex", alignItems: "center", gap: "5px",
+            fontSize: "13px", color: "#2563eb", textDecoration: "none", fontWeight: "600",
+          }}>
+            সব দেখুন <ChevronRight size={13} />
+          </Link>
+        </div>
+
+        {subjects.length === 0 ? (
+          <div style={{
+            background: "white", borderRadius: "16px", padding: "48px", textAlign: "center",
+            border: "1px solid #e8f0fe",
+          }}>
+            <div style={{ fontSize: "40px", marginBottom: "12px" }}>📚</div>
+            <p style={{ color: "#64748b", fontSize: "14px", marginBottom: "16px" }}>
+              কোনো বিষয় পাওয়া যায়নি। প্রোফাইল সেটআপ করুন।
+            </p>
+            <Link href="/setup" style={{
+              display: "inline-block", background: "#2563eb", color: "white",
+              padding: "10px 24px", borderRadius: "10px", textDecoration: "none",
+              fontSize: "13px", fontWeight: "700",
+            }}>
+              সেটআপ করুন →
+            </Link>
+          </div>
+        ) : (
+          <div className="dash-subjects-grid">
+            {subjects.map(subject => (
+              <SubjectCard
+                key={subject.id}
+                subject={subject}
+                chapterCount={(chaptersData[subject.id] || []).length || 5}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* ── Recent Quiz Activity ── */}
+        {quizHistory.length > 0 && (
+          <div style={{ marginTop: "32px" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "14px", flexWrap: "wrap", gap: "8px" }}>
+              <h3 style={{ fontSize: "16px", fontWeight: "800", color: "#0f172a", letterSpacing: "-0.3px" }}>
+                সাম্প্রতিক কুইজ ফলাফল
+              </h3>
+              <Link href="/quiz" style={{ fontSize: "13px", color: "#2563eb", textDecoration: "none", fontWeight: "600", display: "flex", alignItems: "center", gap: "5px" }}>
+                কুইজ দিন <ChevronRight size={13} />
+              </Link>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+              {quizHistory.slice(-4).reverse().map((q, i) => {
+                const sub = subjects.find(s => s.id === q.subject)
+                const scoreColor = q.score >= 80 ? "#16a34a" : q.score >= 60 ? "#d97706" : "#dc2626"
+                const scoreBg = q.score >= 80 ? "#f0fdf4" : q.score >= 60 ? "#fefce8" : "#fef2f2"
+                return (
+                  <div key={i} style={{
+                    background: "white", borderRadius: "12px", padding: "14px 18px",
+                    border: "1px solid #e8f0fe",
+                    display: "flex", alignItems: "center", gap: "14px", flexWrap: "wrap",
+                  }}>
+                    <div style={{
+                      width: "36px", height: "36px", borderRadius: "9px",
+                      background: "#eff6ff", display: "flex", alignItems: "center", justifyContent: "center",
+                      fontSize: "16px", flexShrink: 0,
+                    }}>
+                      {sub?.icon || "📝"}
+                    </div>
+                    <div style={{ flex: 1, minWidth: "100px" }}>
+                      <div style={{ fontSize: "13.5px", fontWeight: "700", color: "#0f172a" }}>
+                        {sub?.name || q.subject}
+                      </div>
+                      <div style={{ fontSize: "11.5px", color: "#94a3b8", marginTop: "2px" }}>
+                        {q.correct}/{q.total} সঠিক
+                      </div>
+                    </div>
+                    <div style={{
+                      background: scoreBg, color: scoreColor,
+                      fontSize: "14px", fontWeight: "800", padding: "5px 12px",
+                      borderRadius: "8px", flexShrink: 0,
+                    }}>
+                      {q.score}%
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* ── Bottom padding ── */}
+        <div style={{ height: "24px" }} />
+      </div>
+    </>
   )
 }
